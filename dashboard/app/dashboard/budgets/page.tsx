@@ -1,7 +1,7 @@
 import { auth } from "@clerk/nextjs/server";
 import { sql } from "@/lib/db";
 import { upsertBudget, deleteBudget } from "./actions";
-import BudgetList from "./BudgetList";
+import BudgetsList from "./BudgetsList";
 
 export default async function BudgetsPage() {
   const { userId } = await auth();
