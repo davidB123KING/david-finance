@@ -29,7 +29,7 @@ export default function BudgetActions({
             }}
             className="w-full text-left px-4 py-2 hover:bg-[#262b36]"
           >
-            ✏️ Uredi
+             Uredi
           </button>
 
           <button
@@ -39,7 +39,7 @@ export default function BudgetActions({
             }}
             className="w-full text-left px-4 py-2 hover:bg-[#262b36] text-red-400"
           >
-            🗑️ Izbriši
+             Izbriši
           </button>
         </div>
       )}
