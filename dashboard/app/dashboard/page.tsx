@@ -1,10 +1,18 @@
 import { auth } from "@clerk/nextjs/server";
 import { sql } from "@/lib/db";
-import { addTransaction } from "./actions";
+
+
+import {
+  addTransaction,
+  getCategories,
+  createCategory,
+} from "./actions";
 
 export default async function DashboardPage() {
   const { userId } = await auth();
   if (!userId) return <div>Nisi prijavljen</div>;
+
+  const categories = await getCategories();
 
   // stats
   const stats = await sql`
@@ -21,10 +29,18 @@ export default async function DashboardPage() {
 
   // last transactions
   const transactions = await sql`
-    SELECT id, type, amount, category, description, created_at
-    FROM transactions
-    WHERE user_id = ${userId}
-    ORDER BY created_at DESC
+    SELECT
+      t.id,
+      t.type,
+      t.amount,
+      t.description,
+      t.created_at,
+      c.name as category_name,
+      c.icon as category_icon
+    FROM transactions t
+    LEFT JOIN categories c ON t.category_id = c.id
+    WHERE t.user_id = ${userId}
+    ORDER BY t.created_at DESC
     LIMIT 5;
   `;
 
@@ -40,83 +56,114 @@ export default async function DashboardPage() {
         <Stat label="Transakcije" value={stats[0].count} />
       </div>
 
+      {/* Categories */}
+      <div className="bg-white rounded shadow p-4">
+        <h2 className="text-xl font-semibold mb-4">
+          Kategorije
+        </h2>
+
+        <form
+          action={createCategory}
+          className="flex flex-wrap gap-2 mb-4"
+        >
+          <input
+            name="name"
+            placeholder="Ime kategorije"
+            required
+            className="border rounded px-3 py-2"
+          />
+          <input
+            name="icon"
+            placeholder="🍔"
+            className="border rounded px-3 py-2 w-20"
+          />
+          <input
+            name="color"
+            type="color"
+            className="border rounded px-3 py-2 w-20"
+          />
+          <button className="bg-black text-white px-4 rounded">
+            Dodaj
+          </button>
+        </form>
+
+        <ul className="space-y-2">
+          {categories.map((cat) => (
+            <li
+              key={cat.id}
+              className="flex items-center gap-3 p-2 border rounded"
+            >
+              <span>{cat.icon}</span>
+              <span className="font-medium">{cat.name}</span>
+              <span
+                className="w-3 h-3 rounded-full"
+                style={{ backgroundColor: cat.color }}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+
       {/* Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-  {/* Prihodek */}
-  <form
-    action={addTransaction}
-    className="p-4 bg-white rounded shadow space-y-3"
-  >
-    <h3 className="font-semibold text-green-600">
-      Dodaj prihodek
-    </h3>
+        {["income", "expense"].map((type) => (
+          <form
+            key={type}
+            action={addTransaction}
+            className="p-4 bg-white rounded shadow space-y-3"
+          >
+            <h3
+              className={`font-semibold ${
+                type === "income"
+                  ? "text-green-600"
+                  : "text-red-600"
+              }`}
+            >
+              Dodaj {type === "income" ? "prihodek" : "strošek"}
+            </h3>
 
-    <input type="hidden" name="type" value="income" />
+            <input type="hidden" name="type" value={type} />
 
-    <input
-      name="amount"
-      type="number"
-      step="0.01"
-      placeholder="Znesek (€)"
-      required
-      className="w-full border rounded px-3 py-2"
-    />
+            <input
+              name="amount"
+              type="number"
+              step="0.01"
+              placeholder="Znesek (€)"
+              required
+              className="w-full border rounded px-3 py-2"
+            />
 
-    <input
-      name="category"
-      placeholder="Kategorija (npr. Plača)"
-      className="w-full border rounded px-3 py-2"
-    />
+            <select
+              name="categoryId"
+              required
+              className="w-full border rounded px-3 py-2"
+            >
+              <option value="">Izberi kategorijo</option>
+              {categories.map((cat) => (
+                <option key={cat.id} value={cat.id}>
+                  {cat.icon} {cat.name}
+                </option>
+              ))}
+            </select>
 
-    <input
-      name="description"
-      placeholder="Opis"
-      className="w-full border rounded px-3 py-2"
-    />
+            <input
+              name="description"
+              placeholder="Opis"
+              className="w-full border rounded px-3 py-2"
+            />
 
-    <button className="w-full bg-green-600 text-white py-2 rounded">
-      Shrani prihodek
-    </button>
-  </form>
-
-  {/* Strošek */}
-  <form
-    action={addTransaction}
-    className="p-4 bg-white rounded shadow space-y-3"
-  >
-    <h3 className="font-semibold text-red-600">
-      Dodaj strošek
-    </h3>
-
-    <input type="hidden" name="type" value="expense" />
-
-    <input
-      name="amount"
-      type="number"
-      step="0.01"
-      placeholder="Znesek (€)"
-      required
-      className="w-full border rounded px-3 py-2"
-    />
-
-    <input
-      name="category"
-      placeholder="Kategorija (npr. Hrana)"
-      className="w-full border rounded px-3 py-2"
-    />
-
-    <input
-      name="description"
-      placeholder="Opis"
-      className="w-full border rounded px-3 py-2"
-    />
-
-    <button className="w-full bg-red-600 text-white py-2 rounded">
-      Shrani strošek
-    </button>
-  </form>
-</div>
-
+            <button
+              className={`w-full text-white py-2 rounded ${
+                type === "income"
+                  ? "bg-green-600"
+                  : "bg-red-600"
+              }`}
+            >
+              Shrani
+            </button>
+          </form>
+        ))}
+      </div>
 
       {/* Transactions */}
       <div>
@@ -140,7 +187,7 @@ export default async function DashboardPage() {
                     {t.description || "Brez opisa"}
                   </p>
                   <p className="text-sm text-gray-500">
-                    {t.category || "Brez kategorije"}
+                    {t.category_icon} {t.category_name}
                   </p>
                 </div>
 
@@ -162,6 +209,10 @@ export default async function DashboardPage() {
     </div>
   );
 }
+
+/* =========================
+   STAT
+========================= */
 
 function Stat({
   label,
