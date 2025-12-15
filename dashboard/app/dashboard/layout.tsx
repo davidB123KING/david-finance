@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import DashboardHeader from "./DashboardHeader";
 
 export default function DashboardLayout({

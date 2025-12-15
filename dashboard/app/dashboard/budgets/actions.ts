@@ -23,8 +23,9 @@ export async function upsertBudget(formData: FormData) {
     DO UPDATE SET amount = EXCLUDED.amount
   `;
 
-  revalidatePath("/dashboard/budgets");
+  revalidatePath(`/dashboard/budgets?month=${month}`);
 }
+
 
 export async function deleteBudget(formData: FormData) {
   const { userId } = await auth();

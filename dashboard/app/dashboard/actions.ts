@@ -61,9 +61,9 @@ export async function getCategories() {
     await sql`
       INSERT INTO categories (user_id, name, color, icon)
       VALUES
-        (${userId}, 'Plača', '#16a34a', '💰'),
-        (${userId}, 'Dolg', '#dc2626', '💳'),
-        (${userId}, 'Loterija', '#eab308', '🎰')
+        (${userId}, 'Plača', '#16a34a', ''),
+        (${userId}, 'Dolg', '#dc2626', ''),
+        (${userId}, 'Loterija', '#eab308', '')
     `;
 
     categories = await sql`

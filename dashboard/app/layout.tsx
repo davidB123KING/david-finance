@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { type Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
   description: "Personal finance dashboard",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
