@@ -9,6 +9,12 @@ export default function DashboardHeader() {
           <Link href="/dashboard">Dashboard</Link>
           <Link href="/dashboard/categories">Kategorije</Link>
           <Link href="/dashboard/graphs">Grafi</Link>
+          <Link
+  href="/dashboard/budgets"
+  className="hover:text-white"
+>
+  Budgeti
+</Link>
         </nav>
 
         <UserButton />
