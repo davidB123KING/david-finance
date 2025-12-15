@@ -25,3 +25,20 @@ export async function upsertBudget(formData: FormData) {
 
   revalidatePath("/dashboard/budgets");
 }
+
+export async function deleteBudget(formData: FormData) {
+  const { userId } = await auth();
+  if (!userId) throw new Error("Not authenticated");
+
+  const budgetId = formData.get("budgetId") as string;
+  if (!budgetId) throw new Error("Missing budgetId");
+
+  // varnost: brišemo samo svoj budget
+  await sql`
+    DELETE FROM budgets
+    WHERE id = ${budgetId}
+      AND user_id = ${userId}
+  `;
+
+  revalidatePath("/dashboard/budgets");
+}
