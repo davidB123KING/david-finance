@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { sql } from "@/lib/db";
+import DashboardHeader from "./DashboardHeader";
 
 
 import {
@@ -46,63 +47,20 @@ export default async function DashboardPage() {
 
   return (
     <div className="p-8 space-y-8">
+
+      
+
       <h1 className="text-3xl font-bold">Dashboard</h1>
 
       {/* Stats */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-        <Stat label="Skupaj" value={`${balance.toFixed(2)} €`} />
-        <Stat label="Prihodki" value={`${stats[0].income} €`} positive />
-        <Stat label="Stroški" value={`${stats[0].expense} €`} negative />
-        <Stat label="Transakcije" value={stats[0].count} />
+        <Stat label="Skupaj" value={balance.toFixed(2) + " €"} />
+<Stat label="Prihodki" value={stats[0].income + " €"} positive />
+<Stat label="Stroški" value={stats[0].expense + " €"} negative />
+<Stat label="Transakcije" value={stats[0].count} />
       </div>
 
-      {/* Categories */}
-      <div className="bg-white rounded shadow p-4">
-        <h2 className="text-xl font-semibold mb-4">
-          Kategorije
-        </h2>
-
-        <form
-          action={createCategory}
-          className="flex flex-wrap gap-2 mb-4"
-        >
-          <input
-            name="name"
-            placeholder="Ime kategorije"
-            required
-            className="border rounded px-3 py-2"
-          />
-          <input
-            name="icon"
-            placeholder="🍔"
-            className="border rounded px-3 py-2 w-20"
-          />
-          <input
-            name="color"
-            type="color"
-            className="border rounded px-3 py-2 w-20"
-          />
-          <button className="bg-black text-white px-4 rounded">
-            Dodaj
-          </button>
-        </form>
-
-        <ul className="space-y-2">
-          {categories.map((cat) => (
-            <li
-              key={cat.id}
-              className="flex items-center gap-3 p-2 border rounded"
-            >
-              <span>{cat.icon}</span>
-              <span className="font-medium">{cat.name}</span>
-              <span
-                className="w-3 h-3 rounded-full"
-                style={{ backgroundColor: cat.color }}
-              />
-            </li>
-          ))}
-        </ul>
-      </div>
+      
 
       {/* Actions */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -226,15 +184,15 @@ function Stat({
   negative?: boolean;
 }) {
   return (
-    <div className="p-4 bg-white rounded shadow">
-      <p className="text-sm text-gray-500">{label}</p>
+    <div className="bg-[#161a22] border border-[#262b36] rounded-xl p-4">
+      <p className="text-sm text-[#9aa1ad]">{label}</p>
       <p
-        className={`text-2xl font-bold ${
+        className={`text-2xl font-semibold ${
           positive
-            ? "text-green-600"
+            ? "text-green-400"
             : negative
-            ? "text-red-600"
-            : ""
+            ? "text-red-400"
+            : "text-[#e6e8eb]"
         }`}
       >
         {value}
@@ -242,3 +200,5 @@ function Stat({
     </div>
   );
 }
+
+

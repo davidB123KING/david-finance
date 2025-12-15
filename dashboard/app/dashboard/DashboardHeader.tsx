@@ -1,32 +1,17 @@
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 
 export default function DashboardHeader() {
   return (
-    <header className="flex items-center justify-between bg-white p-4 rounded shadow">
-      {/* Left */}
-      <h1 className="text-2xl font-bold">
-        Osebne finance
-      </h1>
+    <header className="bg-white border-b">
+      <div className="bg-[#161a22] border border-[#262b36] rounded-xl p-4">
+        <nav className="flex gap-4">
+          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard/categories">Kategorije</Link>
+          <Link href="/dashboard/graphs">Grafi</Link>
+        </nav>
 
-      {/* Right actions */}
-      <div className="flex gap-2">
-        <Link
-          href="/dashboard?modal=category"
-          className="px-4 py-2 rounded bg-black text-white"
-        >
-          ➕ Kategorija
-        </Link>
-
-        <Link
-          href="/dashboard/graphs"
-          className="px-4 py-2 rounded bg-blue-600 text-white"
-        >
-          📊 Grafi
-        </Link>
-
-        <button className="px-4 py-2 rounded bg-gray-200">
-          ⚙️ Več
-        </button>
+        <UserButton />
       </div>
     </header>
   );
