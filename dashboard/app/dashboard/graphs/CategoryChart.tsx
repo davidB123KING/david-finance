@@ -11,6 +11,7 @@ import {
 type ChartItem = {
   name: string;
   value: number;
+  color?: string;
 };
 
 const COLORS = [
@@ -54,12 +55,12 @@ export default function CategoryChart({
               outerRadius={100}
               paddingAngle={4}
             >
-              {data.map((_, index) => (
-                <Cell
-                  key={index}
-                  fill={COLORS[index % COLORS.length]}
-                />
-              ))}
+              {data.map((entry, index) => (
+  <Cell
+    key={index}
+    fill={entry.color || COLORS[index % COLORS.length]}
+  />
+))}
             </Pie>
 
             <Tooltip

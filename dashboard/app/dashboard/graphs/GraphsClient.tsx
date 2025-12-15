@@ -1,18 +1,28 @@
 "use client";
 
 import IncomeExpenseChart from "./IncomeExpenseChart";
+import CategoryChart from "./CategoryChart";
 
 type ChartItem = {
   name: string;
   value: number;
+  color?: string;
+};
+
+
+type GraphsClientProps = {
+  data: ChartItem[];
+  categoryData: ChartItem[];
 };
 
 export default function GraphsClient({
   data,
-}: {
-  data: ChartItem[];
-}) {
+  categoryData,
+}: GraphsClientProps) {
   return (
-    <IncomeExpenseChart data={data} />
+    <div className="space-y-6">
+      <IncomeExpenseChart data={data} />
+      <CategoryChart data={categoryData} />
+    </div>
   );
 }
