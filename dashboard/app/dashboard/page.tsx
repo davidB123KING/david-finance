@@ -83,13 +83,14 @@ export default async function DashboardPage() {
             <input type="hidden" name="type" value={type} />
 
             <input
-              name="amount"
-              type="number"
-              step="0.01"
-              placeholder="Znesek (€)"
-              required
-              className="w-full border rounded px-3 py-2"
-            />
+  name="amount"
+  type="number"
+  step="0.01"
+  min="0.01"
+  required
+  className="w-full bg-[#0f1115] border border-[#262b36] rounded px-3 py-2"
+/>
+
 
             <select
               name="categoryId"

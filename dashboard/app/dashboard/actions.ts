@@ -13,12 +13,22 @@ export async function addTransaction(formData: FormData) {
   if (!userId) throw new Error("Not authenticated");
 
   const type = formData.get("type") as "income" | "expense";
-  const amount = Number(formData.get("amount"));
+  const amountRaw = formData.get("amount");
+  const amount = Number(amountRaw);
   const categoryId = formData.get("categoryId") as string;
   const description = formData.get("description") as string;
 
-  if (!amount || amount <= 0) {
-    throw new Error("Invalid amount");
+  // 🛑 VALIDACIJA ZNESKA
+  if (isNaN(amount)) {
+    throw new Error("Amount must be a number");
+  }
+
+  if (amount <= 0) {
+    throw new Error(
+      type === "income"
+        ? "Income amount must be greater than 0"
+        : "Expense amount must be greater than 0"
+    );
   }
 
   await sql`
@@ -40,6 +50,7 @@ export async function addTransaction(formData: FormData) {
 
   revalidatePath("/dashboard");
 }
+
 
 /* =========================
    CATEGORIES
