@@ -3,29 +3,30 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "cross-env NEXT_DISABLE_TURBOPACK=1 next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint . --ext .ts,.tsx"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.36.2",
     "@neondatabase/serverless": "^1.0.2",
     "next": "16.0.8",
-    "react": "19.2.1",
-    "react-dom": "19.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
     "recharts": "^3.6.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
+    "@types/react": "^18.2.7",
+    "@types/react-dom": "^18.2.4",
     "autoprefixer": "^10.4.23",
-    "eslint": "^9",
+    "cross-env": "^10.1.0",
+    "eslint": "^9.8.0",
     "eslint-config-next": "16.0.8",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "typescript": "^5"
+    "typescript": "^5.2.2"
   }
 }

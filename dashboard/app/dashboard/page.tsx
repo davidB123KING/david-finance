@@ -93,17 +93,18 @@ export default async function DashboardPage() {
 
 
             <select
-              name="categoryId"
-              required
-              className="w-full border rounded px-3 py-2"
-            >
-              <option value="">Izberi kategorijo</option>
-              {categories.map((cat) => (
-                <option key={cat.id} value={cat.id}>
-                  {cat.icon} {cat.name}
-                </option>
-              ))}
-            </select>
+  name="categoryId"
+  required
+  className="w-full border border-[#262b36] rounded px-3 py-2 bg-[#0f1115] text-white placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-blue-600"
+>
+  <option value="">Izberi kategorijo</option>
+  {categories.map((cat) => (
+    <option key={cat.id} value={cat.id}>
+      {cat.icon} {cat.name}
+    </option>
+  ))}
+  {/* DARK MODE drop down seznam fix */}
+</select> 
 
             <input
               name="description"
