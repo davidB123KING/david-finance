@@ -2,18 +2,23 @@
 
 # dependencies
 /node_modules
+/dashboard/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+/dashboard/coverage
 
 # next.js
 /.next/
 /out/
+/dashboard/.next/
+/dashboard/out/
 
 # production
 /build
+/dashboard/build
 
 # misc
 .DS_Store
@@ -23,14 +28,20 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # local env files
 .env*.local
 .env
+/dashboard/.env*
 
 # vercel
 .vercel
+/dashboard/.vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# clerk
+/dashboard/.clerk/

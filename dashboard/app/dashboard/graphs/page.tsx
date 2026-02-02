@@ -4,7 +4,7 @@ import GraphsClient from "./GraphsClient";
 
 export default async function GraphsPage() {
   const { userId } = await auth();
-  if (!userId) return null;
+  if (!userId) return <div>Nisi prijavljen</div>;
 
   // 1️⃣ Prihodki vs stroški
   const data = await sql`

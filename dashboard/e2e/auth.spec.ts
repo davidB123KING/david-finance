@@ -1,19 +1,23 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
 
-test('Uporabnik se lahko prijavi', async ({ page }) => {
-  await page.goto('http://localhost:3000/signin');
+const hasClerk = !!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
-  // Preveri, da se gumb za login prikaže (Clerk form rendera)
-  await expect(page.locator('text=Sign in')).toBeVisible();
+test.describe("Auth", () => {
+  test("Uporabnik lahko odpre prijavo", async ({ page }) => {
+    await page.goto("/sign-in");
+    if (!hasClerk) {
+      await expect(page.locator("text=Clerk ni nastavljen")).toBeVisible();
+      return;
+    }
+    await expect(page.getByRole("heading", { name: /sign in/i })).toBeVisible();
+  });
 
-  // Lahko simuliraš vnos emaila in gesla, če imaš testni Clerk account
-  // await page.fill('input[name="email"]', 'test@example.com');
-  // await page.fill('input[name="password"]', '123456');
-  // await page.click('button:text("Sign in")');
-});
-
-test('Uporabnik se lahko registrira', async ({ page }) => {
-  await page.goto('http://localhost:3000/signup');
-
-  await expect(page.locator('text=Sign up')).toBeVisible();
+  test("Uporabnik lahko odpre registracijo", async ({ page }) => {
+    await page.goto("/sign-up");
+    if (!hasClerk) {
+      await expect(page.locator("text=Clerk ni nastavljen")).toBeVisible();
+      return;
+    }
+    await expect(page.getByRole("heading", { name: /sign up/i })).toBeVisible();
+  });
 });

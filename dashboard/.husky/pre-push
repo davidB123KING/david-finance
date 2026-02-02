@@ -1,0 +1,4 @@
+﻿#!/bin/sh
+cd "$(dirname "$0")/.." || exit 1
+npm test || exit 1
+npm run test:e2e || exit 1
