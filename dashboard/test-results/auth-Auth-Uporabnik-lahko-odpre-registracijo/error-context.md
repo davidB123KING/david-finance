@@ -1,0 +1,89 @@
+# Page snapshot
+
+```yaml
+- generic:
+  - generic [active]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - navigation [ref=e6]:
+            - button "previous" [disabled] [ref=e7]:
+              - img "previous" [ref=e8]
+            - generic [ref=e10]:
+              - generic [ref=e11]: 1/
+              - text: "1"
+            - button "next" [disabled] [ref=e12]:
+              - img "next" [ref=e13]
+          - img
+        - generic [ref=e15]:
+          - link "Next.js 16.0.8 (stale) Turbopack" [ref=e16] [cursor=pointer]:
+            - /url: https://nextjs.org/docs/messages/version-staleness
+            - img [ref=e17]
+            - generic "There is a newer version (16.1.6) available, upgrade recommended!" [ref=e19]: Next.js 16.0.8 (stale)
+            - generic [ref=e20]: Turbopack
+          - img
+      - generic [ref=e21]:
+        - dialog "Runtime Error" [ref=e22]:
+          - generic [ref=e25]:
+            - generic [ref=e26]:
+              - generic [ref=e27]:
+                - generic [ref=e29]: Runtime Error
+                - generic [ref=e30]:
+                  - button "Copy Error Info" [ref=e31] [cursor=pointer]:
+                    - img [ref=e32]
+                  - button "No related documentation found" [disabled] [ref=e34]:
+                    - img [ref=e35]
+                  - link "Learn more about enabling Node.js inspector for server code with Chrome DevTools" [ref=e37] [cursor=pointer]:
+                    - /url: https://nextjs.org/docs/app/building-your-application/configuring/debugging#server-side-code
+                    - img [ref=e38]
+              - generic [ref=e47]: The default export is not a React Component in "/sign-up/page"
+            - generic [ref=e49]:
+              - generic [ref=e50]:
+                - paragraph [ref=e51]:
+                  - text: Call Stack
+                  - generic [ref=e52]: "26"
+                - button "Show 23 ignore-listed frame(s)" [ref=e53] [cursor=pointer]:
+                  - text: Show 23 ignore-listed frame(s)
+                  - img [ref=e54]
+              - generic [ref=e56]:
+                - generic [ref=e57]:
+                  - text: async doRender
+                  - button "Sourcemapping failed. Click to log cause of error." [ref=e58] [cursor=pointer]:
+                    - img [ref=e59]
+                - text: file:///C:/Users/jan%20topler/Documents/GitHub/david-finance/dashboard/.next/dev/server/chunks/ssr/node_modules_next_dist_f44c6a3f._.js (8593:28)
+              - generic [ref=e61]:
+                - generic [ref=e62]:
+                  - text: async handleResponse
+                  - button "Sourcemapping failed. Click to log cause of error." [ref=e63] [cursor=pointer]:
+                    - img [ref=e64]
+                - text: file:///C:/Users/jan%20topler/Documents/GitHub/david-finance/dashboard/.next/dev/server/chunks/ssr/node_modules_next_dist_f44c6a3f._.js (8799:32)
+              - generic [ref=e66]:
+                - generic [ref=e67]:
+                  - text: async handler
+                  - button "Sourcemapping failed. Click to log cause of error." [ref=e68] [cursor=pointer]:
+                    - img [ref=e69]
+                - text: file:///C:/Users/jan%20topler/Documents/GitHub/david-finance/dashboard/.next/dev/server/chunks/ssr/node_modules_next_dist_f44c6a3f._.js (9170:20)
+          - generic [ref=e71]: "1"
+          - generic [ref=e72]: "2"
+        - contentinfo [ref=e73]:
+          - region "Error feedback" [ref=e74]:
+            - paragraph [ref=e75]:
+              - link "Was this helpful?" [ref=e76] [cursor=pointer]:
+                - /url: https://nextjs.org/telemetry#error-feedback
+            - button "Mark as helpful" [ref=e77] [cursor=pointer]:
+              - img [ref=e78]
+            - button "Mark as not helpful" [ref=e81] [cursor=pointer]:
+              - img [ref=e82]
+    - generic [ref=e88] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e89]:
+        - img [ref=e90]
+      - generic [ref=e93]:
+        - button "Open issues overlay" [ref=e94]:
+          - generic [ref=e95]:
+            - generic [ref=e96]: "0"
+            - generic [ref=e97]: "1"
+          - generic [ref=e98]: Issue
+        - button "Collapse issues badge" [ref=e99]:
+          - img [ref=e100]
+  - alert [ref=e102]
+```

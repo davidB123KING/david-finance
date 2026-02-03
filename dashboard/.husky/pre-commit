@@ -1,1 +1,12 @@
-npx husky add .husky/pre-commit "npm test"
+#!/bin/sh
+echo "Running E2E tests..."
+npm run test:e2e
+STATUS=$?
+
+if [ $STATUS -ne 0 ]; then
+  echo "❌ E2E tests failed. Commit aborted."
+  exit 1
+fi
+
+echo "✅ Tests passed. Proceeding with commit."
+exit 0
