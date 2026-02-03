@@ -1,12 +1,11 @@
 #!/bin/sh
-echo "Running E2E tests..."
-npm run test:e2e
-STATUS=$?
+cd "$(dirname "$0")/.." || exit 1
 
-if [ $STATUS -ne 0 ]; then
-  echo "❌ E2E tests failed. Commit aborted."
-  exit 1
-fi
+echo "Running lint..."
+npm run lint || exit 1
 
-echo "✅ Tests passed. Proceeding with commit."
+echo "Running unit tests..."
+npm run test || exit 1
+
+echo "Pre-commit checks passed."
 exit 0
