@@ -1,4 +1,4 @@
-//import { SignUp } from "@clerk/nextjs";
+/*import { SignUp } from "@clerk/nextjs";
 
 export default function Page() {
   if (!process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) {
@@ -6,3 +6,4 @@ export default function Page() {
   }
   return <SignUp />;
 }
+*/
