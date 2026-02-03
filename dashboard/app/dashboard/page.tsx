@@ -1,12 +1,8 @@
 import { auth } from "@clerk/nextjs/server";
 import { sql } from "@/lib/db";
-import DashboardHeader from "./DashboardHeader";
-
-
 import {
   addTransaction,
   getCategories,
-  createCategory,
 } from "./actions";
 
 export default async function DashboardPage() {
@@ -16,20 +12,36 @@ export default async function DashboardPage() {
   const categories = await getCategories();
 
   // stats
-  const stats = await sql`
+  type StatsRow = {
+    count: number | string;
+    income: number | string | null;
+    expense: number | string | null;
+  };
+
+  const stats = (await sql`
     SELECT
       COUNT(*) as count,
       COALESCE(SUM(CASE WHEN type = 'income' THEN amount END), 0) as income,
       COALESCE(SUM(CASE WHEN type = 'expense' THEN amount END), 0) as expense
     FROM transactions
     WHERE user_id = ${userId};
-  `;
+  `) as StatsRow[];
 
   const balance =
     Number(stats[0].income) - Number(stats[0].expense);
 
   // last transactions
-  const transactions = await sql`
+  type TransactionRow = {
+    id: string;
+    type: "income" | "expense";
+    amount: number | string;
+    description: string | null;
+    created_at: string;
+    category_name: string | null;
+    category_icon: string | null;
+  };
+
+  const transactions = (await sql`
     SELECT
       t.id,
       t.type,
@@ -43,7 +55,7 @@ export default async function DashboardPage() {
     WHERE t.user_id = ${userId}
     ORDER BY t.created_at DESC
     LIMIT 5;
-  `;
+  `) as TransactionRow[];
 
   return (
     <div className="p-8 space-y-8">

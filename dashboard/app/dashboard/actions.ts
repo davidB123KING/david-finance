@@ -60,12 +60,19 @@ export async function getCategories() {
   const { userId } = await auth();
   if (!userId) return [];
 
-  let categories = await sql`
+  type Category = {
+    id: string;
+    name: string;
+    color: string;
+    icon: string | null;
+  };
+
+  let categories = (await sql`
     SELECT id, name, color, icon
     FROM categories
     WHERE user_id = ${userId}
     ORDER BY created_at ASC
-  `;
+  `) as Category[];
 
   // če uporabnik še nima kategorij → ustvari default
   if (categories.length === 0) {
@@ -77,12 +84,12 @@ export async function getCategories() {
         (${userId}, 'Loterija', '#eab308', '')
     `;
 
-    categories = await sql`
+    categories = (await sql`
       SELECT id, name, color, icon
       FROM categories
       WHERE user_id = ${userId}
       ORDER BY created_at ASC
-    `;
+    `) as Category[];
   }
 
   return categories;

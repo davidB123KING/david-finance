@@ -12,6 +12,12 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local tooling / generated outputs:
+    "coverage/**",
+    "jest.config.js",
+    "jest.setup.js",
+    "postcss.js",
+    "tailwind.config.js",
   ]),
 ]);
 
