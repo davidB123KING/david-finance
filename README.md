@@ -1,8 +1,8 @@
-UI izboljšave
+<b>UI izboljšave</b>
 
 V tem delu so prikazane manjše, ampak opazne izboljšave uporabniškega vmesnika. Fokus je bil predvsem na dark mode podpori in na tem, da so elementi videti bolj čisti in lažje berljivi.
 
-Dropdown seznam
+<b>Dropdown seznam</b>
 
 Prej je dropdown v dark mode načinu izgledal precej “privzeto”, saj je uporabljal stil brskalnika. To je pomenilo slab kontrast, malo slabšo berljivost in na splošno videz, ki ni najbolje pasal k ostalemu UI-ju.
 
@@ -20,7 +20,7 @@ Prej:
 Potem:
 <img width="645" height="361" alt="image" src="https://github.com/user-attachments/assets/c165cc0d-398c-440b-b6c1-02cf7133e281" />
 
-Tortni graf
+<b>Tortni graf</b>
 
 Tudi pri tortnem grafu je bila glavna težava berljivost, še posebej v dark mode načinu. Prej so bile barve manj kontrastne, robovi pa niso bili jasno ločeni, zaradi česar je bil graf težje razumljiv na prvi pogled.
 
