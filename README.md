@@ -1,85 +1,39 @@
-💰 FinanceApp
+<b>UI izboljšave</b>
 
-FinanceApp je spletna aplikacija za upravljanje osebnih financ, ki omogoča pregledno spremljanje prihodkov, stroškov, kategorij, mesečnih budgetov in grafičnih analiz.
-Aplikacija je zasnovana kot dashboard s temno temo, ki poudarja preglednost in uporabniško izkušnjo.
+V tem delu so prikazane manjše, ampak opazne izboljšave uporabniškega vmesnika. Fokus je bil predvsem na dark mode podpori in na tem, da so elementi videti bolj čisti in lažje berljivi.
 
-🎯 Namen projekta
+<b>Dropdown seznam</b>
 
-Namen projekta je uporabniku omogočiti:
+Prej je dropdown v dark mode načinu izgledal precej “privzeto”, saj je uporabljal stil brskalnika. To je pomenilo slab kontrast, malo slabšo berljivost in na splošno videz, ki ni najbolje pasal k ostalemu UI-ju.
 
-boljši nadzor nad osebnimi financami,
+Po spremembi je dropdown prilagojen dark mode:
 
-razumevanje porabe po kategorijah,
+barve so usklajene z ostalim vmesnikom,
 
-načrtovanje mesečnih budgetov,
+kontrast med ozadjem in tekstom je boljši,
 
-vizualen pregled finančnih podatkov.
+celoten izgled je bolj čist in konsistenten.
 
-Projekt je bil razvit kot šolski projekt, vendar z uporabo sodobnih tehnologij in arhitekturnih pristopov, ki se uporabljajo tudi v realnih produkcijskih aplikacijah.
+Prej:
+<img width="320" height="300" alt="image" src="https://github.com/user-attachments/assets/589ab292-d3a0-46c2-af16-330cd27fe179" />
 
-✨ Glavne funkcionalnosti
+Potem:
+<img width="645" height="361" alt="image" src="https://github.com/user-attachments/assets/c165cc0d-398c-440b-b6c1-02cf7133e281" />
 
-🔐 Avtentikacija uporabnikov (Clerk)
+<b>Tortni graf</b>
 
-💸 Dodajanje prihodkov in stroškov
+Tudi pri tortnem grafu je bila glavna težava berljivost, še posebej v dark mode načinu. Prej so bile barve manj kontrastne, robovi pa niso bili jasno ločeni, zaradi česar je bil graf težje razumljiv na prvi pogled.
 
-🗂️ Upravljanje kategorij (dodajanje, urejanje, brisanje)
+Po spremembi je graf:
 
-📊 Grafični prikaz prihodkov in stroškov
+vizualno bolj pregleden,
 
-📅 Mesečni budgeti s progress barom
+barve so bolj izrazite in prijazne dark mode načinu,
 
-⚠️ Vizualni prikaz preseženega budgeta
+podatki so hitreje razpoznavni brez dodatnega napora.
 
-🌙 Temna tema za boljšo uporabniško izkušnjo
+Prej:
+<img width="321" height="255" alt="image" src="https://github.com/user-attachments/assets/23a34f79-3abf-4a20-b13f-ddcd34a1f450" />
 
-🧱 Tehnologije
-
-Next.js (App Router)
-
-React
-
-TypeScript
-
-Tailwind CSS
-
-Clerk – avtentikacija uporabnikov
-
-Neon (PostgreSQL) – podatkovna baza
-
-Server Actions – delo s podatki na strežniku
-
-Vercel – deployment
-
-🧠 Arhitektura
-
-Aplikacija uporablja server komponente za nalaganje podatkov
-
-Client komponente se uporabljajo za interakcijo (forme, izbor meseca, grafi)
-
-Podatki so vedno vezani na prijavljenega uporabnika (user_id)
-
-Funkcionalnosti so modularno ločene (dashboard, kategorije, budgeti, grafi)
-
-🚀 Zagon projekta (lokalno)
-
-Namesti odvisnosti:
-
-npm install
-
-
-Nastavi okoljske spremenljivke (.env):
-
-DATABASE_URL=your_database_url
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-CLERK_SECRET_KEY=your_secret_key
-
-
-Zaženi aplikacijo:
-
-npm run dev
-
-
-👤 Avtor
-
-Projekt je razvil David Bohak .
+Potem:
+<img width="263" height="200" alt="image" src="https://github.com/user-attachments/assets/14dcbc90-f7f5-4fd2-9adf-a690d42c1b2f" />

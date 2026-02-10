@@ -1,0 +1,11 @@
+#!/bin/sh
+cd "$(dirname "$0")/.." || exit 1
+
+echo "Running lint..."
+npm run lint || exit 1
+
+echo "Running unit tests..."
+npm run test || exit 1
+
+echo "Pre-commit checks passed."
+exit 0

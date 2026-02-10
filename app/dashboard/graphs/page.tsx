@@ -4,17 +4,22 @@ import GraphsClient from "./GraphsClient";
 
 export default async function GraphsPage() {
   const { userId } = await auth();
-  if (!userId) return null;
+  if (!userId) return <div>Nisi prijavljen</div>;
 
   // 1️⃣ Prihodki vs stroški
-  const data = await sql`
+  type SummaryRow = {
+    type: "income" | "expense";
+    total: number | string;
+  };
+
+  const data = (await sql`
     SELECT
       type,
       SUM(amount) as total
     FROM transactions
     WHERE user_id = ${userId}
     GROUP BY type;
-  `;
+  `) as SummaryRow[];
 
   const chartData = [
     {
@@ -32,7 +37,13 @@ export default async function GraphsPage() {
   ];
 
   // 2️⃣ Stroški po kategorijah
-  const categoryData = await sql`
+  type CategorySummaryRow = {
+    name: string;
+    color: string;
+    total: number | string;
+  };
+
+  const categoryData = (await sql`
   SELECT
     COALESCE(c.name, 'Brez kategorije') AS name,
     COALESCE(c.color, '#3b82f6') AS color,
@@ -43,7 +54,7 @@ export default async function GraphsPage() {
     AND t.type = 'expense'
   GROUP BY c.name, c.color
   ORDER BY total DESC;
-`;
+`) as CategorySummaryRow[];
 
   return (
     <div className="space-y-6">
@@ -62,3 +73,4 @@ export default async function GraphsPage() {
     </div>
   );
 }
+

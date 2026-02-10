@@ -22,12 +22,17 @@ export default async function BudgetsPage() {
   // samo za prikaz – logika ni več odvisna od tega
   const currentMonth = new Date().toISOString().slice(0, 7);
 
-  const categories = await sql`
+  type Category = {
+    id: string;
+    name: string;
+  };
+
+  const categories = (await sql`
     SELECT id, name
     FROM categories
     WHERE user_id = ${userId}
     ORDER BY name;
-  `;
+  `) as Category[];
 
   const budgets = (await sql`
     SELECT
