@@ -1,6 +1,10 @@
 # David Finance — testing branch
 
+<<<<<<< Updated upstream
 To je testing branch za Next.js aplikacijo osebnih financ. Tukaj so zbrani testi in hitri ukazi, da se hitro orientiras.
+=======
+Next.js aplikacija za osebne finance.
+>>>>>>> Stashed changes
 
 ## Hiter zagon
 ```bash
@@ -8,6 +12,7 @@ npm install
 npm run dev
 ```
 
+<<<<<<< Updated upstream
 ## Testi (Jest)
 - `npm test` / `npm run test:unit`: osnovni unit testi
 - `npm run test:watch`: watch mode
@@ -26,3 +31,16 @@ Kaj pokrivajo:
 - `Auth`: odpiranje strani za prijavo in registracijo (z ali brez Clerk nastavitev).
 - `Dashboard`: prikaz sporocila, ce uporabnik ni prijavljen.
 - `Graphs`: dostop do grafov brez prijave ne prikaze vsebine.
+=======
+## Testi
+```bash
+npm test
+npm run test:watch
+npm run test:coverage
+```
+
+## E2E (Playwright)
+```bash
+npm run test:e2e
+```
+>>>>>>> Stashed changes
