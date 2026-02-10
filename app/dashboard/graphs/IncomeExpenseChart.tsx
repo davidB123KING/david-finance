@@ -14,7 +14,7 @@ type ChartItem = {
   value: number;
 };
 
-export default function IncomeExpenseChart({
+export default function IncomeExpenseChart({ //test
   data,
 }: {
   data: ChartItem[];
